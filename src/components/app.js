@@ -25,7 +25,7 @@ class App extends React.Component {
         };
         this.baseUri = 'https://testnodes.wavesnodes.com';
         this.wavelet = 100000000;
-        this.dappaddress = '3N4GgQWCckqUn1H9y8rNRyCXZPkgKTNKznT';
+        this.dappaddress = '3N2gRjLKVrWp12PQzYJyTpLrQC94CbpaNcN';
         this.explorerUrl = "https://wavesexplorer.com/testnet";
         this.deposit = this.deposit.bind(this);
         this.invest = this.invest.bind(this);
@@ -128,43 +128,109 @@ class App extends React.Component {
         }
     }
     render() {
-        return (
-             <div className="container">
-               <div className="deposit form-group">
-                 <label>[Investor] Deposit</label>
-                 <input className="form-control" type="text" placeholder="Seed phrase" onChange={(e) => this.updateValue("deposit", "seed", e.target.value)}/>
-                 <small className="form-text text-muted">It is a demo in Waves testnet. Please keep your seed always carefully</small>
-                 <input className="form-control" type="number" placeholder="WAVES - Amount" onChange={(e) => this.updateValue("deposit", "amount", e.target.value)}/>
-                 <input className="btn btn-primary" type="submit" value="Deposit" onClick={this.deposit}/>
-                        <br/>
-                        <a className="form-text text-muted" target="_blank" href={this.explorerUrl + "/tx/" + this.state.deposit.txid}>Transaction: {this.state.deposit.txid}</a>
-                        <br/>
-                      </div>
-                      <div className="invest form-group">
-                        <label>[Investor] Vote & Invest</label>
-                        <input className="form-control" type="text" placeholder="Seed phrase" onChange={(e) => this.updateValue("invest", "seed", e.target.value)}/>
-                        <small className="form-text text-muted">It is a demo in Waves testnet. Please keep your seed always carefully</small>
-                        <input className="form-control" type="number" placeholder="WAVES - Amount" onChange={(e) => this.updateValue("invest", "amount", e.target.value)}/>
-                        <input className="form-control" type="text" placeholder="Proposal Address" onChange={(e) => this.updateValue("invest", "address", e.target.value)}/>
-                        <input className="btn btn-primary" type="submit" value="Invest" onClick={this.invest}/>
-                        <a className="form-text text-muted" target="_blank" href={this.explorerUrl + "/tx/" + this.state.invest.txid}>Transaction: {this.state.invest.txid}</a>
-                        <br/>
-                      </div>
-                      <div className="getfunds form-group">
-                        <label>[Startup] Get Funds</label>
-                        <input className="form-control" type="text" placeholder="Seed phrase" onChange={(e) => this.updateValue("getFunds", "seed", e.target.value)}/>
-                        <small className="form-text text-muted">It is a demo in Waves testnet. Please keep your seed always carefully</small>
-                        <input className="form-control" type="number" placeholder="WAVES - Amount" onChange={(e) => this.updateValue("getFunds", "amount", e.target.value)}/>
-                        <input className="btn btn-primary" type="submit" value="Get Funds" onClick={this.getFunds}/>
-                        <a className="form-text text-muted" target="_blank" href={this.explorerUrl + "/tx/" + this.state.getFunds.txid}>Transaction: {this.state.getFunds.txid}</a>
-                        <br/>
-                      </div>
-                      <div className = "authFunc form-group">
-                      <input className="btn btn-primary" type="submit" value="Auth" onClick = {this.authFunc}/>
-                      </div>
-                    </div>
-                );
-                        }
+        return ( <
+            div className = "container" >
+            <
+            div className = "deposit form-group" >
+            <
+            label > [Investor] Deposit < /label> <
+            input className = "form-control"
+            type = "text"
+            placeholder = "Seed phrase"
+            onChange = {
+                (e) => this.updateValue("deposit", "seed", e.target.value) }
+            /> <
+            small className = "form-text text-muted" > It is a demo in Waves testnet.Please keep your seed always carefully < /small> <
+            input className = "form-control"
+            type = "number"
+            placeholder = "WAVES - Amount"
+            onChange = {
+                (e) => this.updateValue("deposit", "amount", e.target.value) }
+            /> <
+            input className = "btn btn-primary"
+            type = "submit"
+            value = "Deposit"
+            onClick = { this.deposit }
+            /> <
+            br / >
+            <
+            a className = "form-text text-muted"
+            target = "_blank"
+            href = { this.explorerUrl + "/tx/" + this.state.deposit.txid } > Transaction: { this.state.deposit.txid } < /a> <
+            br / >
+            <
+            /div> <
+            div className = "invest form-group" >
+            <
+            label > [Investor] Vote & Invest < /label> <
+            input className = "form-control"
+            type = "text"
+            placeholder = "Seed phrase"
+            onChange = {
+                (e) => this.updateValue("invest", "seed", e.target.value) }
+            /> <
+            small className = "form-text text-muted" > It is a demo in Waves testnet.Please keep your seed always carefully < /small> <
+            input className = "form-control"
+            type = "number"
+            placeholder = "WAVES - Amount"
+            onChange = {
+                (e) => this.updateValue("invest", "amount", e.target.value) }
+            /> <
+            input className = "form-control"
+            type = "text"
+            placeholder = "Proposal Address"
+            onChange = {
+                (e) => this.updateValue("invest", "address", e.target.value) }
+            /> <
+            input className = "btn btn-primary"
+            type = "submit"
+            value = "Invest"
+            onClick = { this.invest }
+            /> <
+            a className = "form-text text-muted"
+            target = "_blank"
+            href = { this.explorerUrl + "/tx/" + this.state.invest.txid } > Transaction: { this.state.invest.txid } < /a> <
+            br / >
+            <
+            /div> <
+            div className = "getfunds form-group" >
+            <
+            label > [Startup] Get Funds < /label> <
+            input className = "form-control"
+            type = "text"
+            placeholder = "Seed phrase"
+            onChange = {
+                (e) => this.updateValue("getFunds", "seed", e.target.value) }
+            /> <
+            small className = "form-text text-muted" > It is a demo in Waves testnet.Please keep your seed always carefully < /small> <
+            input className = "form-control"
+            type = "number"
+            placeholder = "WAVES - Amount"
+            onChange = {
+                (e) => this.updateValue("getFunds", "amount", e.target.value) }
+            /> <
+            input className = "btn btn-primary"
+            type = "submit"
+            value = "Get Funds"
+            onClick = { this.getFunds }
+            /> <
+            a className = "form-text text-muted"
+            target = "_blank"
+            href = { this.explorerUrl + "/tx/" + this.state.getFunds.txid } > Transaction: { this.state.getFunds.txid } < /a> <
+            br / >
+            <
+            /div> <
+            div className = "authFunc form-group" >
+            <
+            input className = "btn btn-primary"
+            type = "submit"
+            value = "Auth"
+            onClick = { this.authFunc }
+            /> <
+            /div> <
+            /div>
+        );
+    }
 }
 
 const app = document.getElementById('app');
