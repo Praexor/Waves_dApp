@@ -1,0 +1,130 @@
+# In this example multiple accounts can deposit their funds to DAO and safely take them back, no one can interfere with this.
+# DAO participants can also vote for particular addresses and let them withdraw invested funds then quorum has reached.
+# An inner state is maintained as mapping `address=>waves`.
+# https://medium.com/waves-lab/waves-announces-funding-for-ride-for-dapps-developers-f724095fdbe1
+
+# You can try this contract by following commands in the IDE (ide.wavesplatform.com)
+# Run commands as listed below
+# From account #0:
+#      deploy()
+# From account #1: deposit funds
+#      broadcast(invokeScript({dappAddress: address(env.accounts[1]), call:{function:"deposit",args:[]}, payment: [{amount: 100000000, asset:null }]}))
+# From account #2: deposit funds
+#      broadcast(invokeScript({dappAddress: address(env.accounts[1]), call:{function:"deposit",args:[]}, payment: [{amount: 100000000, asset:null }]}))
+# From account #1: vote for startup
+#      broadcast(invokeScript({dappAddress: address(env.accounts[1]), call:{function:"vote",args:[{type:"integer", value: 500000}, {type:"string", value: "3MrXEKJr9nDLNyVZ1d12Mq4jjeUYwxNjMsH"}]}, payment: []}))
+# From account #2: vote for startup
+#      broadcast(invokeScript({dappAddress: address(env.accounts[1]), call:{function:"vote",args:[{type:"integer", value: 500000}, {type:"string", value: "3MrXEKJr9nDLNyVZ1d12Mq4jjeUYwxNjMsH"}]}, payment: []}))
+# From account #3: get invested funds
+#      broadcast(invokeScript({dappAddress: address(env.accounts[1]), call:{function:"getFunds",args:[{type:"integer", value: 500000}]}, payment: []}))
+
+{-# STDLIB_VERSION 3 #-}
+{-# CONTENT_TYPE DAPP #-}
+{-# SCRIPT_TYPE ACCOUNT #-}
+
+@Callable(i)
+func deposit() = {
+   let pmt = extract(i.payment)
+   if (isDefined(pmt.assetId)) then throw("can hodl waves only at the moment")
+   else {
+        let currentKey = toBase58String(i.caller.bytes)
+        let xxxInvestorBalance = currentKey + "_" + "ib"
+        let currentAmount = match getInteger(this, xxxInvestorBalance) {
+            case a:Int => a
+            case _ => 0
+        }
+        let newAmount = currentAmount + pmt.amount
+        WriteSet([DataEntry(xxxInvestorBalance, newAmount)])
+   }
+}
+@Callable(i)
+func withdraw(amount: Int) = {
+        let currentKey = toBase58String(i.caller.bytes)
+        let xxxInvestorBalance = currentKey + "_" + "ib"
+        let currentAmount = match getInteger(this, xxxInvestorBalance) {
+            case a:Int => a
+            case _ => 0
+        }
+        let newAmount = currentAmount - amount
+     if (amount < 0)
+            then throw("Can't withdraw negative amount")
+    else if (newAmount < 0)
+            then throw("Not enough balance")
+            else ScriptResult(
+                    WriteSet([DataEntry(xxxInvestorBalance, newAmount)]),
+                    TransferSet([ScriptTransfer(i.caller, amount, unit)])
+                )
+    }
+@Callable(i)
+func getFunds(amount: Int) = {
+        let quorum = 2
+        let currentKey = toBase58String(i.caller.bytes)
+        let xxxStartupFund = currentKey + "_" + "sf"
+        let xxxStartupVotes = currentKey + "_" + "sv"
+        let currentAmount = match getInteger(this, xxxStartupFund) {
+            case a:Int => a
+            case _ => 0
+        }
+        let totalVotes = match getInteger(this, xxxStartupVotes) {
+            case a:Int => a
+            case _ => 0
+        }
+        let newAmount = currentAmount - amount
+    if (amount < 0)
+            then throw("Can't withdraw negative amount")
+    else if (newAmount < 0)
+            then throw("Not enough balance")
+    else if (totalVotes < quorum)
+            then throw("Not enough votes. At least 2 votes required!")
+    else ScriptResult(
+                    WriteSet([
+                        DataEntry(xxxStartupFund, newAmount)
+                        ]),
+                    TransferSet([ScriptTransfer(i.caller, amount, unit)])
+                )
+    }
+@Callable(i)
+func vote(amount: Int, address: String) = {
+        let currentKey = toBase58String(i.caller.bytes)
+        let xxxInvestorBalance = currentKey + "_" + "ib"
+        let xxxStartupFund = address + "_" + "sf"
+        let xxxStartupVotes = address + "_" + "sv"
+        let flagKey = address + "_" + currentKey
+        let flag = match getInteger(this, flagKey) {
+            case a:Int => a
+            case _ => 0
+        }
+        let currentAmount = match getInteger(this, xxxInvestorBalance) {
+            case a:Int => a
+            case _ => 0
+        }
+        let currentVotes = match getInteger(this, xxxStartupVotes) {
+            case a:Int => a
+            case _ => 0
+        }
+        let currentFund = match getInteger(this, xxxStartupFund) {
+            case a:Int => a
+            case _ => 0
+        }
+    if (amount <= 0)
+            then throw("Can't withdraw negative amount")
+    else if (amount > currentAmount)
+            then throw("Not enough balance!")
+    else if (flag > 0)
+            then throw("Only one vote per project is possible!")
+    else
+            WriteSet([
+                        DataEntry(xxxInvestorBalance, currentAmount - amount),
+                        DataEntry(xxxStartupVotes, currentVotes + 1),
+                        DataEntry(flagKey, 1),
+                        DataEntry(xxxStartupFund, currentFund + amount)
+            ])
+    }
+@Verifier(tx)
+func verify() = {
+    match tx {
+		case d: SetScriptTransaction =>
+			sigVerify(tx.bodyBytes, tx.proofs[0], base58'x51ySWMyhE8G2AqJqmDpe3qoQM2aBwmieiJzZLK33JW')
+		case _ => false
+    }
+}
