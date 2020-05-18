@@ -24,8 +24,7 @@ Who is this for?
     dApp Administrators don’t need a separate interface to be built: the Waves-dApp UI is simple and powerful enough.
     Hackers can inspect a dApp and try out various attacks in a user-friendly way :)
     
-    Testers have full access to all callable functions.
-    
-    dApp Administrators don’t need a separate interface to be built: the Waves-dApp UI is simple and powerful enough.
-    
-    Hackers can inspect a dApp and try out various attacks in a user-friendly way :)
+Ilya Smagin
+https://medium.com/@ilya.smagin/waves-dapp-com-auto-generated-ui-for-waves-dapps-3f4f6c9109ce
+
+
