@@ -24,7 +24,7 @@ Who is this for?
    **dApp Administrators** don’t need a separate interface to be built: the Waves-dApp UI is simple and powerful enough.<br />
    **Hackers** can inspect a dApp and try out various attacks in a user-friendly way :)
     
-@ismagin :+1
+@ismagin :+1: 
 https://medium.com/@ilya.smagin/waves-dapp-com-auto-generated-ui-for-waves-dapps-3f4f6c9109ce
 
 
