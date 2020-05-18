@@ -19,9 +19,9 @@ When the user invokes a function, Waves Keeper pops up and requests confirmation
 
 Who is this for?
 
-   **Developers** can condunct early testing and try out functionality as the contract is being implemented.
-   **Testers** have full access to all callable functions.
-   **dApp Administrators** don’t need a separate interface to be built: the Waves-dApp UI is simple and powerful enough.
+   **Developers** can condunct early testing and try out functionality as the contract is being implemented.<br />
+   **Testers** have full access to all callable functions.<br />
+   **dApp Administrators** don’t need a separate interface to be built: the Waves-dApp UI is simple and powerful enough.<br />
    **Hackers** can inspect a dApp and try out various attacks in a user-friendly way :)
     
 Ilya Smagin
