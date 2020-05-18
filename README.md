@@ -4,10 +4,10 @@ Waves Development Ecosystem
 Currently, the Waves ecosystem provides several useful tools for developers:
 
 ###### Waves IDE (https://ide.wavesplatform.com/)
-###### [VSCODE plug-in] (https://marketplace.visualstudio.com/items?itemName=wavesplatform.waves-ride)
-###### [Surfboard] (https://github.com/wavesplatform/surfboard)
-###### [Waves Explorer] (https://wavesexplorer.com/)
-###### [Waves keeper] (https://docs.wavesprotocol.org/en/ecosystem/waves-keeper/)
+###### VSCODE plug-in (https://marketplace.visualstudio.com/items?itemName=wavesplatform.waves-ride)
+###### Surfboard (https://github.com/wavesplatform/surfboard)
+###### Waves Explorer (https://wavesexplorer.com/)
+###### Waves keeper (https://docs.wavesprotocol.org/en/ecosystem/waves-keeper/)
 
 Despite this, early testing, use and management of dApps can be somewhat complicated and tedious due to the need for manual scripting, building temporary UIs, and so on.Waves-Dapp.com
 Waves-dApp.com
@@ -19,10 +19,10 @@ When the user invokes a function, Waves Keeper pops up and requests confirmation
 
 Who is this for?
 
-    **Developers** can condunct early testing and try out functionality as the contract is being implemented.
-    **Testers** have full access to all callable functions.
-    **dApp Administrators** don’t need a separate interface to be built: the Waves-dApp UI is simple and powerful enough.
-    **Hackers** can inspect a dApp and try out various attacks in a user-friendly way :)
+   **Developers** can condunct early testing and try out functionality as the contract is being implemented.
+   **Testers** have full access to all callable functions.
+   **dApp Administrators** don’t need a separate interface to be built: the Waves-dApp UI is simple and powerful enough.
+   **Hackers** can inspect a dApp and try out various attacks in a user-friendly way :)
     
 Ilya Smagin
 https://medium.com/@ilya.smagin/waves-dapp-com-auto-generated-ui-for-waves-dapps-3f4f6c9109ce
