@@ -1,6 +1,6 @@
 # Waves dApp
-Waves Development Ecosystem
-https://wavesdapp.herokuapp.com/
+Waves Development Ecosystem<br />
+https://wavesdapp.herokuapp.com/<br />
 Currently, the Waves ecosystem provides several useful tools for developers:
 
 Waves IDE https://ide.wavesplatform.com/ <br />
